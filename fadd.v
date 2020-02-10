@@ -1,4 +1,4 @@
-`include "barrelLR.v"
+`include "barrel.v"
 `include "rca.v"
 module f_adder(A,B,op);
 	input [15:0] A,B;
