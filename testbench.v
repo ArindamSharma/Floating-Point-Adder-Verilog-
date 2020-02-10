@@ -10,7 +10,7 @@ begin
 end 
 initial
 begin
-	$monitor("A=%d B=%d Output = %d ",A,B,op);
+	$monitor("A=%b %b %b \nB=%b %b %b\nOutput = %b %b %b",A[15],A[14:10],A[9:0],B[15],B[14:10],B[9:0],op[15],op[14:10],op[9:0]);
 end
 endmodule
 
@@ -32,16 +32,22 @@ endmodule
 // end
 // endmodule
 
-// `include "barrel.v"
+// `include "barrelLR.v"
 // module barrel_test;
 // reg [3:0] shift;
 // reg [15:0]A;
+// reg d,val;
 // wire [15:0]op;
-// barrel B0(A,shift,op);
+// barrelLR B0(A,shift,op,d,val);
 // initial
 // begin
-// 	A=16'b1111001110010101;
-// 	shift=4'b1110;
+// 	// d=0;//left
+// 	d=1;//right
+// 	val=0;// value placed after shift
+// 	// A=16'b1111001110010101;
+// 	A=16'b0101010001011001;
+// 	// shift=4'b0110;
+// 	shift=2;
 // end 
 // initial
 // begin
@@ -68,17 +74,17 @@ endmodule
 
 // `include "mux.v"
 // module muxtestbench;
-// reg I1,I2,I3,I4,S0,S1;
+// // reg I1,I2,I3,I4,S0,S1;
+// reg I1,I2,S;
 // wire op;
-// MUX a(S0,S1,I1,I2,I3,I4,op);
+// MUX2 a(S,I1,I2,op);
 // initial
 // begin
-// 	I1=1;I2=1;I3=0;I4=0;
-// 	S0=0;
-// 	S1=1;
+// 	I1=1;I2=0;
+// 	S=0;
 // end
 // initial
 // begin
-// 	$monitor("input %b%b%b%b  select %b%b :- Output %b",I1,I2,I3,I4,S0,S1,op);
+// 	$monitor("input %b%b  select %b :- Output %b",I1,I2,S,op);
 // end
 // endmodule

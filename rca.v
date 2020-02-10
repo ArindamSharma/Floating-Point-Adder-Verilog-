@@ -27,3 +27,18 @@ module sixteenbitadder(A,B,cin,Sum);
 	fulladder f_2_6(A[14],B[14],c[13],Sum[14],c[14]);
 	fulladder f_2_7(A[15],B[15],c[14],Sum[15],c[15]);
 endmodule
+
+module onefourbitadder(A,B,cin,Sum);
+	input [10:0] A,B;
+	output [10:0] Sum;
+	input cin;
+
+	wire [15:0] A_1,B_1;
+	wire [15:0] Sum_1;
+	assign A_1[15:11]=0;
+	assign A_1[10:0]=A;
+	assign B_1[15:11]=0;
+	assign B_1[10:0]=B;
+	sixteenbitadder F0(A_1,B_1,1'b0,Sum_1);
+	assign Sum=Sum_1[10:0];
+endmodule
